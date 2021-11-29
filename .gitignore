@@ -1,0 +1,14 @@
+
+__pycache__/
+*.py[cod]
+.idea/
+.env
+tg_bot/.env
+dj_bot/dj_bot/.env
+dj_bot/db.sqlite3
+dj_bot/app/migrations/
+
+*.log
+*.pot
+*.pyc
+

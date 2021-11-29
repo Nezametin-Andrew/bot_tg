@@ -1,0 +1,65 @@
+version: "3.1"
+#
+#services:
+#  tgbot:
+#    container_name: tg_bot
+#    build:
+#      context: .
+#    command: python app.py
+#    restart: always
+#    env_file:
+#      - "../.env"
+#    volumes:
+#      - .:/src
+
+
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  postgresdb:
+    build:
+      context: ./dj_bot/docker/postgres
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_PASSWORD=$PASSWORD_DB
+    volumes:
+      - ./dj_bot/docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: ./dj_bot/
+      dockerfile: Dockerfile
+    volumes:
+      - ./dj_bot/:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+          - postgresdb
+
+  nginx:
+    build:
+      context: ./dj_bot/docker/nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - web
+      - postgresdb
+    ports:
+      - "80:80"
+    volumes:
+      - ./static/:/static
+
+  tg_bot:
+    build:
+      context: ./tg_bot
+      dockerfile: Dockerfile
+    volumes:
+      - ./tg_bot/:/src
+    depends_on:
+      - postgresdb
+      - web
+      - nginx
