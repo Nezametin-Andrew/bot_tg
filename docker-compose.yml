@@ -51,7 +51,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./static/:/static
+      - ./dj_bot/static/:/static
 
   tg_bot:
     build:
