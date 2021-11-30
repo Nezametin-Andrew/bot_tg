@@ -1,13 +1,13 @@
 from decimal import Decimal
 
-from tg_bot.keyboards.inline.control_menu.all_games import get_btn_for_all_game
-from tg_bot.utils.request import request
-from tg_bot.data.msg import callback_msg
-from tg_bot.keyboards.inline.template_btn import get_cancel_markup
-from tg_bot.keyboards.inline.control_menu.my_profile import get_markup_for_profile, get_markup_for_my_ticket
-from tg_bot.states.profile_state import UserDataState
-from tg_bot.states.games_state import GameState
-from tg_bot.keyboards.inline.control_menu.all_games import info_ticket
+from keyboards.inline.control_menu.all_games import get_btn_for_all_game
+from utils.request import request
+from data.msg import callback_msg
+from keyboards.inline.template_btn import get_cancel_markup
+from keyboards.inline.control_menu.my_profile import get_markup_for_profile, get_markup_for_my_ticket
+from states.profile_state import UserDataState
+from states.games_state import GameState
+
 
 
 def create_msg_for_view_profile(*args, **kwargs):

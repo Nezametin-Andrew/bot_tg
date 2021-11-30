@@ -1,5 +1,5 @@
 from aiogram import types
-from tg_bot.loader import dp
+from loader import dp
 import time
 import urllib3
 import json

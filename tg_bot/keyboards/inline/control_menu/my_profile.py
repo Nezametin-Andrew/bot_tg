@@ -3,7 +3,7 @@ from decimal import Decimal
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.callback_data import CallbackData
 
-from tg_bot.keyboards.inline.template_btn import get_template_btn, get_cancel_btn, get_returned_btn
+from keyboards.inline.template_btn import get_template_btn, get_cancel_btn, get_returned_btn
 
 call_data_for_profile = CallbackData('profile', 'data')
 

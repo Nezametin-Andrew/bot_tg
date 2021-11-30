@@ -1,7 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.callback_data import CallbackData
 
-from tg_bot.keyboards.inline.template_btn import get_template_btn, get_returned_btn
+from keyboards.inline.template_btn import get_template_btn, get_returned_btn
 
 
 callback_for_ticket = CallbackData('ticket', 'prev', 'next')

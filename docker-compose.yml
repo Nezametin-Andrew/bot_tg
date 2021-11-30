@@ -1,16 +1,4 @@
 version: "3.1"
-#
-#services:
-#  tgbot:
-#    container_name: tg_bot
-#    build:
-#      context: .
-#    command: python app.py
-#    restart: always
-#    env_file:
-#      - "../.env"
-#    volumes:
-#      - .:/src
 
 
 services:
@@ -53,13 +41,16 @@ services:
     volumes:
       - ./dj_bot/static/:/static
 
-  tg_bot:
-    build:
-      context: ./tg_bot
-      dockerfile: Dockerfile
-    volumes:
-      - ./tg_bot/:/src
-    depends_on:
-      - postgresdb
-      - web
-      - nginx
+#  tg_bot:
+#    build:
+#      context: ./tg_bot
+#      dockerfile: Dockerfile
+#    volumes:
+#      - ./tg_bot/:/src
+#    depends_on:
+#      - postgresdb
+#      - web
+#      - nginx
+#      - redis
+#    command: python app.py
+#    restart: always

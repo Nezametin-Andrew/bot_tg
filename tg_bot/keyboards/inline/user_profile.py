@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.callback_data import CallbackData
-from tg_bot.utils import request
+from utils import request
 
 profile_keyboard = InlineKeyboardMarkup(
 

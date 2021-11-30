@@ -1,5 +1,5 @@
-from tg_bot.keyboards.inline.main_menu import cancel
-from tg_bot.keyboards.inline.user_profile import get_user_info
+from keyboards.inline.main_menu import cancel
+
 
 callback_msg = {
     'full_game': '🎲 Ближайшие игры 🎲',

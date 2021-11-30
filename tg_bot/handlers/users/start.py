@@ -3,15 +3,15 @@ import asyncio
 from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 from aiogram.dispatcher import FSMContext
-from tg_bot.loader import dp, bot
-from tg_bot.states.profile_state import UserDataState
-from tg_bot.states.games_state import GameState
-from tg_bot.utils.request import request
-from tg_bot.keyboards.default import start_menu
-from tg_bot.keyboards.inline import main_menu
-from tg_bot.keyboards.inline.control_menu.my_profile import call_data_for_profile
-from tg_bot.keyboards.inline.control_menu.control_main_menu import control_main_menu, level_menu
-from tg_bot.keyboards.inline.control_menu.all_games import callback_for_ticket, buy_ticket
+from loader import dp, bot
+from states.profile_state import UserDataState
+from states.games_state import GameState
+from utils.request import request
+from keyboards.default import start_menu
+from keyboards.inline import main_menu
+from keyboards.inline.control_menu.my_profile import call_data_for_profile
+from keyboards.inline.control_menu.control_main_menu import control_main_menu, level_menu
+from keyboards.inline.control_menu.all_games import callback_for_ticket, buy_ticket
 
 
 @dp.message_handler(CommandStart(), state='*')

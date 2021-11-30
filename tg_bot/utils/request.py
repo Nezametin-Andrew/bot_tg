@@ -3,7 +3,7 @@ import urllib3
 
 
 def get_url():
-    return "http://localhost:8000/api/v1/"
+    return "http://localhost/api/v1/"
 
 
 def instance_http():

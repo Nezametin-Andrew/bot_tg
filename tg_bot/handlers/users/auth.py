@@ -1,8 +1,8 @@
 from aiogram import types
 
-from tg_bot.keyboards.inline import main_menu
-from tg_bot.loader import dp
-from tg_bot.utils.request import request
+from keyboards.inline import main_menu
+from loader import dp
+from utils.request import request
 
 
 @dp.message_handler(text="🧾 Регистрация 🧾")
