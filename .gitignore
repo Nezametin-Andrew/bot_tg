@@ -6,7 +6,7 @@ __pycache__/
 tg_bot/.env
 dj_bot/dj_bot/.env
 dj_bot/db.sqlite3
-dj_bot/app/migrations/
+dj_bot/app/migrations/*.py
 
 *.log
 *.pot
