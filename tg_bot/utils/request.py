@@ -3,7 +3,7 @@ import urllib3
 
 
 def get_url():
-    return "http://localhost/api/v1/"
+    return "http://188.72.209.127/api/v1/"
 
 
 def instance_http():
@@ -20,5 +20,5 @@ def request(model=None, method=None, data={}):
         fields=data
 
     )
-
+    print(json.loads(r.data.decode()))
     return json.loads(r.data.decode())

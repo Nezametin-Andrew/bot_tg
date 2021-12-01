@@ -58,7 +58,6 @@ get_my_balance_msg = """
 
 
 def create_msg_for_my_tickets(*args, **kwargs):
-    print(args[0])
     if args[0][0]['ticket__event__price'] is None: return False
     result_msg = f"""
 
@@ -82,10 +81,21 @@ async def get_data_for_user(*args, **kwargs):
 
     if await state.get_state() == 'UserDataState:up_balance':
         await state.finish()
+
     if not await state.get_data():
         await UserDataState.user_data.set()
-        user_info = request(model='', method='get_info_user', data={'user': kwargs['user_id']})
-        user_info = user_info['data']
+        user_info = request(model='', method='get_user', data={'user': kwargs['user_id']})
+        new_user_info = []
+
+        for item in user_info['data']:
+            if int(item['id_tg']) == int(kwargs['user_id']):
+                new_user_info.append(item)
+
+        if not new_user_info:
+            user_info = user_info['data']
+        else:
+            user_info = new_user_info
+
         await state.update_data(user_data=user_info)
     else:
         user_info = await state.get_data()
@@ -107,6 +117,10 @@ async def top_up_balance(*args, **kwargs):
     state = await kwargs['state'].get_state()
     if state == 'UserDataState:up_balance':
         money_sum, user_id = kwargs['sum'], kwargs['user_id']
+        if float(money_sum) > float(999):
+            msg = "❌ Сумма не может быть больше 999"
+            await kwargs['state'].update_data(up_balance={'status': False, "msg": msg})
+            return
         req = request(model='balance', method='up_balance', data={'sum': money_sum, 'user_id': user_id})
         if req['result']:
             await kwargs['state'].update_data(up_balance={'status': True})
@@ -137,10 +151,13 @@ async def get_my_balance(*args, **kwargs):
 async def all_games(*args, **kwargs):
     state = await kwargs['state'].get_state()
     if state is None or state[:9] != "GameState":
-        await kwargs['state'].finish()
-        await GameState.game_data.set()
         response = request(model='game', method='get_all_games', data={})
-        await kwargs['state'].update_data(response)
+        if not response['game_data']:
+            return False, False
+        else:
+            await kwargs['state'].finish()
+            await GameState.game_data.set()
+            await kwargs['state'].update_data(response)
 
     return await get_btn_for_all_game(kwargs['state'])
 

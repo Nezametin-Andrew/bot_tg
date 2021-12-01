@@ -62,13 +62,3 @@ class GameView(APIView):
     def get(self, request, *args, **kwargs):
         return JsonResponse({"game_data": services.process_game(request.GET)})
 
-
-class TestView(APIView):
-
-    def get(self, request):
-        from django.utils import timezone
-        event = Event.objects.all()
-        if event[0].date < timezone.now():
-            print((event[0].date - timezone.now()).total_seconds())
-
-        return JsonResponse({"hello": "world"})

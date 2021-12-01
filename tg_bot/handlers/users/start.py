@@ -30,12 +30,18 @@ async def bot_start(msg: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(main_menu.menu_callback.filter(), state='*')
 async def click_btn(call: types.CallbackQuery, callback_data: dict, state: FSMContext):
-    await call.answer(cache_time=2)
+
     markup, text = await control_main_menu[callback_data['item']](
         user_id=call.from_user.id, call_data=callback_data['item'], state=state
     )
-    await call.message.edit_text(text=text)
-    await call.message.edit_reply_markup(markup)
+
+    if not text:
+
+        await call.answer(text="🤷‍♂ На текущий момент нет игр", show_alert=True)
+    else:
+        await call.message.edit_text(text=text)
+        await call.message.edit_reply_markup(markup)
+    await call.answer(cache_time=2)
 
 
 @dp.callback_query_handler(main_menu.cancel_callback.filter(), state='*')
@@ -70,7 +76,9 @@ async def up_balance(msg: types.Message, state: FSMContext):
     await control_main_menu['added_money'](state=state, sum=msg.text, user_id=msg.from_user.id)
     status = await state.get_data()
     if status['up_balance']['status']: text = "✔ Ваш баланс успешно пополнен"
-    else: text = "❌ Произошла непредвиденная ошибка, повторите запрос позже"
+    else:
+        text = "❌ Произошла непредвиденная ошибка, повторите запрос позже"
+        if status['up_balance'].get('msg') is not None: text = status['up_balance'].get('msg')
 
     await msg.delete()
     new_msg = await msg.answer(text)

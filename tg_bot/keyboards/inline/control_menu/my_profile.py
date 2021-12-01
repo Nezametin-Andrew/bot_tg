@@ -9,7 +9,7 @@ call_data_for_profile = CallbackData('profile', 'data')
 
 
 def get_my_balance_btn(*args, **kwargs):
-    if Decimal(float(args[0][0]['account_amount'])) > Decimal(0):
+    if float(args[0][0]['account_amount']) > float(0):
         return InlineKeyboardButton(
             text="💵  Запросить выплату", callback_data=call_data_for_profile.new('get_my_balance')
         )

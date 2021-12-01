@@ -52,7 +52,6 @@ def format_to_json(data):
 def get_all_games(*args, **kwarg):
     games = Event.objects.filter(count_tickets__gt=0).values(
         'id', 'price', 'count_tickets', 'busy_tickets', 'date', 'bank',
-        #'ticket', 'ticket__user__user_name'
     )
 
     return format_to_json(games)

@@ -14,10 +14,10 @@ admins = [
 ip = dotenv_values(ENV_PATH)["IP"]
 
 aiogram_redis = {
-    'host': 'localhost',
+    'host': '188.72.209.127',
 }
 
 redis = {
-    'address': ('localhost', 6379),
+    'address': ('188.72.209.127', 6379),
     'encoding': 'utf8'
 }

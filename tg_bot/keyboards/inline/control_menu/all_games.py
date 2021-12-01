@@ -20,7 +20,6 @@ info_ticket = """
 async def get_btn_for_all_game(*args, **kwargs):
     markup = None
     data = await args[0].get_data()
-
     if data.get('level_game') is None:
         data.update({'level_game': 0})
         await args[0].update_data(data)
