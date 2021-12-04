@@ -45,16 +45,16 @@ services:
       - ./dj_bot/static/:/static
     restart: always
 
-  tg_bot:
-    build:
-      context: ./tg_bot
-      dockerfile: Dockerfile
-    volumes:
-      - ./tg_bot/:/src
-    depends_on:
-      - postgresdb
-      - web
-      - nginx
-      - redis
-    command: python app.py
-    restart: always
+#  tg_bot:
+#    build:
+#      context: ./tg_bot
+#      dockerfile: Dockerfile
+#    volumes:
+#      - ./tg_bot/:/src
+#    depends_on:
+#      - postgresdb
+#      - web
+#      - nginx
+#      - redis
+#    command: python app.py
+#    restart: always

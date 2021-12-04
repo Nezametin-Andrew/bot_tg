@@ -74,3 +74,10 @@ class ArchiveGame(models.Model):
     bank = models.DecimalField(max_digits=9, decimal_places=6, verbose_name="Разыгрываемая сумма")
     winner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Победитель")
     random_num = models.IntegerField(verbose_name="Случайное число")
+    link = models.CharField(max_length=255, null=True, bank=True, verbose_name="Ссылка на результат игры")
+
+    class Meta:
+        verbose_name_plural = "Архив прошедших игр"
+
+    def __str__(self):
+        return f"Результат игры № {self.id_game}"
